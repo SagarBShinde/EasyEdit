@@ -1,0 +1,23 @@
+.key {
+  font-family:'Courier New', Courier, monospace;
+  color: blue;
+  background-color:lightgray;
+  font-size: 15px;
+  white-space: nowrap;
+  text-align: end;
+}
+
+.value {
+  font-family:'Courier New', Courier, monospace;
+  background-color:lightgray;
+  font-size: 15px;
+  white-space: nowrap;
+  text-align: start;
+
+}
+
+.obj {
+
+
+  
+}

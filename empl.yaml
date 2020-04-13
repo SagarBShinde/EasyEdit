@@ -1,0 +1,13 @@
+name: John Dey
+age: 32
+address:
+  apt: 106a
+  street: wards road
+  area: newbury park
+  pin: IG27AZ
+  locality:
+    city: London
+    proviance: stratford
+  office: canary wharf
+department: automation
+designation: architect
