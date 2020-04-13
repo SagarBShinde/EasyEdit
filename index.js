@@ -8,8 +8,9 @@ newFieldBtn.addEventListener('click', function(event){
   let mainDiv = document.createElement("div");
   mainDiv.setAttribute("id", "main-container");
   document.body.appendChild(mainDiv);
-  document.body.appendChild(createObjNode(yamlData));
-  let node = document.getElementById('header')  
+  document.getElementById("main-container").appendChild(createObjNode(yamlData));
+  // document.body.appendChild(createObjNode(yamlData));
+  // let node = document.getElementById('header')  
 })
 
 
@@ -61,9 +62,9 @@ function createKeyItem(yamlKey){
 }
 
 function createSeparatorItem(){
-  let separatorNode = document.createElement('span');
+  let separatorNode = document.createElement("span");
   separatorNode.setAttribute("class", "separator")
-  separatorNode.setAttribute("value", ":");
+  separatorNode.textContent = ":";
   return separatorNode;
 }
 

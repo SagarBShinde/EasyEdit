@@ -1,23 +1,55 @@
-.key {
-  font-family:'Courier New', Courier, monospace;
+#main-container{
+  background-color: #F8F8FA;
+  margin: auto;
+
+}
+
+
+
+
+.keyInput {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: blue;
-  background-color:lightgray;
-  font-size: 15px;
+  background-color: #F4F4FC;
+  font-size: 11px;
+  line-height: 1.6em;
   white-space: nowrap;
-  text-align: end;
+  text-align: center;
+  font-weight: bold;
+
+  border: 1.5px solid #A6A5D3;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 2px
 }
 
-.value {
-  font-family:'Courier New', Courier, monospace;
-  background-color:lightgray;
-  font-size: 15px;
-  white-space: nowrap;
-  text-align: start;
-
-}
-
-.obj {
-
-
+.yamlList{
+  list-style: none;
   
+}
+
+/* ul li:before{
+  content: '\21A6';
+  margin: 0 1em;
+} */
+
+.valInput {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(1, 1, 15);
+  background-color: #F4F4FC;
+  font-size: 11px;
+  line-height: 1.6em;
+  white-space: nowrap;
+  text-align: center;
+  font-weight: bold;
+
+  border: 1.5px solid #A6A5D3;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 2px
+
+}
+
+.separator {
+  font-weight: bold;
 }
