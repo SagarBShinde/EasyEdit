@@ -76,6 +76,7 @@ function createValueItem(yamlval){
 
 }
 
+
 function readYaml(){
   const fs = require('fs');
   const yaml = require('js-yaml');
@@ -89,10 +90,79 @@ function readYaml(){
   }
 }
 
+//called with every property and its value
+function process(key,value, spacing) {
+  let space = ""
+  for (i=0; i<spacing; i++){
+    space = space + "  "
+  }
+  if (value!== null && typeof(value)=="object"){ 
+    console.log(space+ key + " : ");
+    }else { 
+    console.log(space + key + " : "+value); 
+  }
+}
+
+function traverse(o,func, spacing) {
+  // let spacing = spacing;
+  for (var i in o) {
+      func.apply(null,[i,o[i],spacing]);  
+      if (o[i] !== null && typeof(o[i])=="object") {
+          //going one step down in the object tree!!
+          spacing += 1;
+          traverse(o[i],func, spacing);
+          spacing -= 1;
+      }
+  }
+}
+
+function representYaml(jsonObj){
+if (jsonObj === null)
+  return;
+let tbl = createTable();
+for (var i in jsonObj) {
+  console.log("value of i is:" + i);
+  console.log("value of obj[i] is:" + jsonObj[i]);
+    addRow(tbl,i,jsonObj[i]);
+    if (jsonObj[i] !== null && typeof(jsonObj[i])=="object" ){
+        let row = tbl.insertRow()
+        row.insertCell();
+        row.insertCell().appendChild(representYaml(jsonObj[i]));     
+    }
+  }
+return tbl;
+}
 
 
+function createTable(){
+  var body = document.body,
+  tbl  = document.createElement('table');
+  tbl.setAttribute("class", 'yamlTable')
+  // tbl.style.width  = '100px';
+  return tbl;
+}
 
-
-
+function addRow(tbl,key,value){
+  var tr = tbl.insertRow();
+  var td1 = tr.insertCell();
+  keyNode = document.createElement("INPUT");
+  keyNode.setAttribute("type", "text");
+  keyNode.setAttribute("name", key);
+  keyNode.setAttribute("id", key);
+  keyNode.setAttribute("class", 'key');
+  keyNode.setAttribute("value", key+':');
+  keyNode.style.width = key.length + "ch";
+  td1.appendChild(keyNode);
+  // td1.appendChild(document.createTextNode(key+ ':'));
+  if (typeof(value)!== "object") {
+    var td2 = tr.insertCell();
+    valueNode = document.createElement("INPUT");
+    valueNode.setAttribute("type", "text");
+    valueNode.setAttribute("name", value);
+    valueNode.setAttribute("id", value);
+    valueNode.setAttribute("value", value);
+    td2.appendChild(valueNode);
+  }
+}
 
 
