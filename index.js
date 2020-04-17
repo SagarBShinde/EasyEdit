@@ -57,12 +57,13 @@ function createListItem(yamlKey, yamlVal){
   let listItem = document.createElement('li')
   let listDiv = document.createElement("div");
   listDiv.setAttribute("id", yamlKey+'_div');
-  listDiv.setAttribute("class", 'listDiv');
   listDiv.appendChild(createKeyItem(yamlKey));
   listDiv.appendChild(createSeparatorItem());
   if (typeof(yamlVal)!== "object") {
+    listDiv.setAttribute("class", 'listItem');
     listDiv.appendChild(createValueItem(yamlVal));
   } else{
+    listDiv.setAttribute("class", 'listDiv');
     let expandButton = document.createElement("button");
     expandButton.setAttribute("class", "expand-button");
     expandButton.innerHTML="&#43;"
