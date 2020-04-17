@@ -11,6 +11,7 @@
     "electron": "^8.2.0"
   },
   "dependencies": {
+    "jquery": "^3.5.0",
     "js-yaml": "^3.13.1"
   }
 }

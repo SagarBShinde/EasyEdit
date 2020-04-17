@@ -1,3 +1,5 @@
+let $ = require('jquery');
+
 console.log ("From the from Renderer -2");
 
 const newFieldBtn = document.getElementById('CreateBtn');
@@ -7,33 +9,46 @@ newFieldBtn.addEventListener('click', function(event){
   let yamlData = readYaml();
   let mainDiv = document.createElement("div");
   mainDiv.setAttribute("id", "main-container");
+  
+  let rootListDiv = document.createElement("div");
+  rootListDiv.setAttribute("id","rootListDiv");
+  
+  let expandButton = document.createElement("button");
+    expandButton.setAttribute("class", "expand-button");
+    expandButton.setAttribute("id", "root-expand-button");
+    expandButton.innerHTML="&#43;"
+  expandButton.addEventListener('click', function(){
+    $("#root").toggle('visible');
+  });  
+  mainDiv.append(expandButton);
+  mainDiv.appendChild(rootListDiv)
   document.body.appendChild(mainDiv);
-  document.getElementById("main-container").appendChild(createObjNode(yamlData));
-  // document.body.appendChild(createObjNode(yamlData));
-  // let node = document.getElementById('header')  
+  rootListDiv.appendChild(createObjNode(yamlData, "root"));
+  $('.yamlList').hide();
 })
 
 
-function createObjNode(jsonObj){
+function createObjNode(jsonObj, divId){
   if (jsonObj === null)
   return;
-  let objList = createList();
+  let objList = createList(divId);
   for (var i in jsonObj) {
     console.log("value of i is:" + i);
     console.log("value of obj[i] is:" + jsonObj[i]);
     let listDiv = createListItem(i,jsonObj[i]);
       objList.appendChild(listDiv);
       if (jsonObj[i] !== null && typeof(jsonObj[i])=="object" ){
-        let list = createObjNode(jsonObj[i]);  
-        listDiv.appendChild(list);  
+        let list = createObjNode(jsonObj[i], "list-"+i);  
+        listDiv.appendChild(list); 
       }
     }
   return objList;
 }
 
-function createList() {
+function createList(divId) {
   let list = document.createElement("ul");
   list.setAttribute("class", "yamlList");
+  list.setAttribute("id",divId )
   return list;
 
 }
@@ -47,6 +62,14 @@ function createListItem(yamlKey, yamlVal){
   listDiv.appendChild(createSeparatorItem());
   if (typeof(yamlVal)!== "object") {
     listDiv.appendChild(createValueItem(yamlVal));
+  } else{
+    let expandButton = document.createElement("button");
+    expandButton.setAttribute("class", "expand-button");
+    expandButton.innerHTML="&#43;"
+    listDiv.appendChild(expandButton);
+    expandButton.addEventListener('click', function(){
+      $("#list-"+yamlKey).toggle('visible');
+    })
   }
  listItem.appendChild(listDiv)
   return listItem;
