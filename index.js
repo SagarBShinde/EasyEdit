@@ -90,6 +90,7 @@ function createObjNode(jsonObj, divId){
   for (var i in jsonObj) {
     console.log("value of i is:" + i);
     console.log("value of obj[i] is:" + jsonObj[i]);
+    console.log ("type of value:" + typeof jsonObj[i])
     let listDiv = createListItem(i,jsonObj[i]);
       objList.appendChild(listDiv);
       if (jsonObj[i] !== null && typeof(jsonObj[i])=="object" ){

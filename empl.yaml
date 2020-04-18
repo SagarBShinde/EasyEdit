@@ -1,5 +1,6 @@
 name: John Dey
 age: 32
+vendor: false
 address:
   apt: 106a
   street: wards road
@@ -8,6 +9,7 @@ address:
   locality:
     city: London
     proviance: stratford
+    Metro: true
   office: canary wharf
 department: automation
 designation: architect
