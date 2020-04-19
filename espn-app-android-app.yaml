@@ -1,0 +1,145 @@
+brand: ESPN
+platform: android
+os: android
+environment: prod
+validation_rule:
+  gam_display_rule:
+    rule_type: 'URLQueryParameterValidator'
+    endpoint:
+    id:
+    exclusion:
+    flag: disabled
+    params:
+      cust_params:
+        type: Required
+        operator: Matches
+        value: ^.*%3D.*%26.*$
+  gam_csai_rule: 
+    #endpoint: ^\("\)\?http\(s\)\?://pubads.g.doubleclick.net/gampad/ads?
+    endpoint: ^?pubads.g.doubleclick.net/gampad/ads?
+    rule_type: 'URLQueryParameterValidator'
+    id:
+    exclusion:
+    flag: enabled
+    params:
+      iu:
+        type: Required
+        operator: Matches
+        value: ^\/21783347309\/m\.app\.espn\.\(ar\|au\|br\|cl\|co\|dep\|global\|in\|mx\|ph\|uk\|us\|ve\|za\)\/hsv\/android_\(tablet\|handset\)$
+      description_url:
+        type: Required
+        operator: Matches
+        value: ^http\(s\)\?%3A%2F%2F\(6abc\|abc11\|abc13\|abc30\|abc7\(news\|chicago\|ny\)\?\)\.com%2F\([-A-z%2F\0-9]\+\)$
+      vid:
+        type: Required
+        operator: Matches
+        value: ^otv\-[0-9]\+$
+      pp:
+        type: Required
+        operator: Matches
+        value: ^espn-app-clips-android-csai$
+      output:
+        type: Required
+        operator: Matches
+        value: ^xml_vast3$
+      cmsid:
+        type: Required
+        operator: Matches
+        value: ^2497009$
+      npa:
+        type: Required
+        operator: Matches
+        value: ^[01]$
+      is_lat:
+        type: Required
+        operator: Matches
+        value: ^[01]$
+      scor:
+        type: Required
+        operator: Matches
+        value: ^TODO$
+      url:
+        type: Required
+        operator: Matches
+        value: ^http\(s\)\?TODO$
+      hl:
+        type: Required
+        operator: Matches
+        value: ^en\|es\|pt$
+      msid:
+        type: Required
+        operator: Matches
+        value: ^TODO$
+      an:
+        type: Required
+        operator: Matches
+        value: ^TO%20DO$
+      extcalls:
+        type: Required
+        operator: Matches
+        value: ^liveconnect$
+      cust_params:
+        type: Required
+        operator: Matches
+        value: ^.*%3D.*%26.*$
+    custom_param:
+      nlsnAppID:
+        type: Required
+        operator: Matches
+        value: ^\([A-Z0-9]\+\)\{9,\}-\(\([A-Z0-9]\+\)\{4,\}-\)\+\([A-Z0-9]\+\)\{9,\}$
+      nlsnDevGrp:
+        type: Required
+        operator: Matches
+        value: ^PHN$
+gam_ssai_rule:
+    endpoint: https://\(qa\.\)\?api.abcotvs.com/v3/\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)/m3u8/url?
+    id: ad=\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)
+    flag: enabled
+    rule_type: gam
+    exclusion:  
+    params:
+      ad:
+        type: Required
+        operator: Matches
+        value: ^\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)_live$
+      ad.adUnit:
+        type: Required
+        operator: Matches
+        value: ^\/\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)\/\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)-app\/[-A-z]\+\/video$
+      ad.pp:
+        type: Required
+        operator: Matches
+        value: ^otv\-\(ios\|android\)$
+      ad.url:
+        type: Required
+        operator: Matches
+        value: ^com\.\(go\.\)\?abclocal\.\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)\(app\)\?\(\.news\)\?\(\.debug\)\?$
+      ad.description_url:
+        type: Required
+        operator: Matches
+        value: ^http\(s\)\?:\/\/\(6abc\|abc11\|abc13\|abc30\|abc7\(news\|chicago\|ny\)\?\)\.com\/\([-A-z\/\0-9\%]\+\)$
+      ad.cust_params:
+        type: Required
+        operator: Matches
+        value: ^.*%3D.*%26.*$
+    custom_param:
+      chan:
+          type: Required
+          operator: Matches
+          value: ^\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)$
+      aff:
+          type: Required
+          operator: Matches
+          value: ^\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)$
+      bundleId:
+          type: Required
+          operator: Matches
+          value: ^com\.\(go\.\)\?abclocal\.\(wabc\|kabc\|wls\|wpvi\|kgo\|ktrk\|wtvd\|kfsn\)\(app\)\?\(\.news\)\?\(\.debug\)\?$
+      tag:
+          type: Optional
+          operator: Matches
+          value: ^[A-z,\-]\+$
+      refDomain:
+          type: Required
+          operator: Matches
+          value: ^http\(s\)\?:\/\/\(6abc\|abc11\|abc13\|abc30\|abc7\(news\|chicago\|ny\)\?\)\.com\/\([-A-z\/\0-9\%]\+\)$

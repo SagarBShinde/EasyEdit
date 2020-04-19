@@ -2,12 +2,13 @@ let $ = require('jquery');
 
 console.log ("From the from Renderer -2");
 
-const newFieldBtn = document.getElementById('CreateBtn');
+const createTreeBtn = document.getElementById('CreateBtn');
 const jsonBtn = document.getElementById('jsondwnld');
 
-newFieldBtn.addEventListener('click', function(event){
+createTreeBtn.addEventListener('click', function(event){
   console.log('Inside listner')
   let yamlData = readYaml();
+  console.log("Yaml data is:"+ JSON.stringify(yamlData));
   let mainDiv = document.createElement("div");
   mainDiv.setAttribute("id", "main-container");
   
@@ -94,7 +95,12 @@ function createObjNode(jsonObj, divId){
     let listDiv = createListItem(i,jsonObj[i]);
       objList.appendChild(listDiv);
       if (jsonObj[i] !== null && typeof(jsonObj[i])=="object" ){
-        let list = createObjNode(jsonObj[i], "list-"+i);  
+        let list;
+        if (jsonObj[i] instanceof Array){
+          list = createObjNode(jsonObj[i], "array-list-"+i); 
+        }else{
+          list = createObjNode(jsonObj[i], "list-"+i);  
+        }
         listDiv.appendChild(list); 
       }
     }
@@ -125,7 +131,13 @@ function createListItem(yamlKey, yamlVal){
     expandButton.innerHTML="&#43;"
     listDiv.appendChild(expandButton);
     expandButton.addEventListener('click', function(){
-      $("#list-"+yamlKey).toggle('visible');
+      if (yamlVal instanceof Array){
+        //$("#array-list-"+yamlKey).toggle('visible');
+        $(this).parent('div').next("#array-list-"+yamlKey).toggle('visible')
+      }else{
+        $(this).parent('div').next("#list-"+yamlKey).toggle('visible')
+        // $("#list-"+yamlKey).toggle('visible');
+      }
     })
   }
  listItem.appendChild(listDiv)
@@ -163,6 +175,7 @@ function readYaml(){
 
   try {
     let fileContents = fs.readFileSync('./empl.yaml', 'utf8');
+    //let fileContents = fs.readFileSync('./espn-app-android-app.yaml', 'utf8');
     let data = yaml.safeLoad(fileContents);
     return data
   } catch (e) {

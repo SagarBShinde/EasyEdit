@@ -11,6 +11,19 @@ address:
     proviance: stratford
     Metro: true
   office: canary wharf
+  work_location:
+    - country: England
+      city: London
+      year: 2020
+    - country: Switzerland
+      city: bern
+      year: 2010
 department: automation
 designation: architect
 bonus: 1.52
+skills:
+  - java
+  - javascript
+  - ruby
+  - python
+
