@@ -8,10 +8,14 @@
   </head>
   <header id='header'>Easy JSON and YAML Editor</header>
   <body>
-    <section>
-      <button id='CreateBtn'>Create</button>
-      <button id='jsondwnld'>JSON</button>
-  </section>  
+      <div id = "menu-view" class = sub_div>
+          <button id='CreateBtn'>Create</button>
+          <button id='jsondwnld'>JSON</button>
+    </div>
+    <div id="main-container" class= main_div>
+      <div id="main-listView" class= sub_div></div>
+      <div id="main-preview" class= sub_div>this is a Random text</div>  
+    </div> 
     <script> 
       require("./index.js");
     </script> 

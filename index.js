@@ -1,7 +1,5 @@
 let $ = require('jquery');
 
-console.log ("From the from Renderer -2");
-
 const createTreeBtn = document.getElementById('CreateBtn');
 const jsonBtn = document.getElementById('jsondwnld');
 
@@ -9,9 +7,9 @@ createTreeBtn.addEventListener('click', function(event){
   console.log('Inside listner')
   let yamlData = readYaml();
   console.log("Yaml data is:"+ JSON.stringify(yamlData));
-  let mainDiv = document.createElement("div");
-  mainDiv.setAttribute("id", "main-container");
-  
+  // let mainDiv = document.createElement("div");
+  // mainDiv.setAttribute("id", "main-container");
+  let mainDiv = document.getElementById('main-listView');
   let rootListDiv = document.createElement("div");
   rootListDiv.setAttribute("id","rootListDiv");
   
@@ -24,7 +22,7 @@ createTreeBtn.addEventListener('click', function(event){
   });  
   mainDiv.append(expandButton);
   mainDiv.appendChild(rootListDiv)
-  document.body.appendChild(mainDiv);
+  // document.body.appendChild(mainDiv);
   rootListDiv.appendChild(createObjNode(yamlData, "root"));
   $('.yamlList').hide();
 })
@@ -35,20 +33,6 @@ jsonBtn.addEventListener ('click', function(event){
 
     obj['root'] = createJSONObj($("#root").children());
 
-  // let childNodes = $("#root").children();
-  // if (childNodes){
-  //   let obj = new Object();
-  //   childNodes.each( function (index){
-  //     if ($(this).children('div').children('input').last().attr('class') === 'listItem'){
-  //     obj[$(this).children('div').children('input').first().attr('value')] = $(this).children('div').children('input').last().attr('value');
-  //     } else{
-
-  //     }
-  //   })
-  //   console.log(JSON.stringify(obj))
-  // } else { 
-  //   console.log("No root node found")
-  // }
   console.log(JSON.stringify(obj.root));
   console.log(yaml.safeDump(obj.root));
 })
@@ -62,27 +46,25 @@ jsonBtn.addEventListener ('click', function(event){
           console.log("Inside if statement");
         obj[$(this).children('div').children('input').first().attr('value')] = $(this).children('div').children('input').last().attr('value');
         } else{
+          if ($(this).children('div').first().attr('class') === 'ArrayListDiv'){
+            let objArray = new Array();
+            $(this).children('ul').first().children().each(function(index){
+                if ($(this).children('div').first().attr('class') === 'listItem'){
+                  objArray.push ($(this).children('div').children('input').last().attr('value'));
+                } else {
+                objArray.push(createJSONObj($(this).children('ul').first().children()));
+                }
+            });
+            obj[$(this).children('div').children('input').first().attr('value')] = objArray;
+          } else {
           obj[$(this).children('div').children('input').first().attr('value')] = createJSONObj($(this).children('ul').first().children());
+          }
         }
       })
     return obj;
-
   }
 
-  // childNodes.each( function (index){
-
-  //   console.log( $(this).children('div').children('input').first());
-  //   console.log( $(this).children('div').children('input').first().attr('value'));
-  //   console.log( $(this).children('div').children('input').first().attr('class'));
-  //   console.log( $(this).children('div').children('input').last());
-  //   console.log( $(this).children('div').children('input').last().attr('value'));
-  //   console.log( $(this).children('div').children('input').last().attr('class'));
-  //  // console.log( index + ": " + $( this ).text() );
-  // })
-
-
 }
-
 
 function createObjNode(jsonObj, divId){
   if (jsonObj === null)
@@ -125,7 +107,11 @@ function createListItem(yamlKey, yamlVal){
     listDiv.setAttribute("class", 'listItem');
     listDiv.appendChild(createValueItem(yamlVal));
   } else{
-    listDiv.setAttribute("class", 'listDiv');
+      if(yamlVal instanceof Array){
+        listDiv.setAttribute("class", 'ArrayListDiv');
+      }else{
+        listDiv.setAttribute("class", 'listDiv');
+      }
     let expandButton = document.createElement("button");
     expandButton.setAttribute("class", "expand-button");
     expandButton.innerHTML="&#43;"
@@ -148,6 +134,7 @@ function createKeyItem(yamlKey){
   let keyNode = document.createElement('input');
   keyNode.setAttribute("id", yamlKey);
   keyNode.setAttribute("class", "keyInput");
+  keyNode.setAttribute("type", getType(yamlKey));
   keyNode.setAttribute("value", yamlKey);
   return keyNode;
 
@@ -164,6 +151,7 @@ function createValueItem(yamlval){
   let valNode = document.createElement('input');
   valNode.setAttribute("id", yamlval)
   valNode.setAttribute("class", "valInput")
+  valNode.setAttribute("type", getType(yamlval));
   valNode.setAttribute("value", yamlval);
   return valNode;
 
@@ -174,14 +162,36 @@ function readYaml(){
   const yaml = require('js-yaml');
 
   try {
-    let fileContents = fs.readFileSync('./empl.yaml', 'utf8');
-    //let fileContents = fs.readFileSync('./espn-app-android-app.yaml', 'utf8');
+    //let fileContents = fs.readFileSync('./empl.yaml', 'utf8');
+    let fileContents = fs.readFileSync('./espn-app-android-app.yaml', 'utf8');
     let data = yaml.safeLoad(fileContents);
     return data
   } catch (e) {
     console.log(e);
   }
 }
+
+function getType(value){
+  let val_type
+  switch (typeof value){
+
+    case 'number':
+      val_type = 'number';   
+      break;
+    
+    case 'string':
+        val_type = 'text';   
+        break;
+    case 'boolean':
+        val_type = 'boolean';   
+        break;
+    // add exception for invalid value type
+    default:
+      val_type ='';    
+  }
+  return val_type;
+}
+
 
 
 

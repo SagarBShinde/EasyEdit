@@ -1,10 +1,43 @@
+html, body {
+  height: 100%;
+}
+
 #main-container{
+  display: flex;
+  flex-direction: row;
   background-color: #F8F8FA;
   margin: auto;
+  border: 5px solid navy;
+  height: 100%;
+  overflow: auto;
 
 }
 
+#main-listView{
 
+  width: 65%;
+  height: 100%;
+  overflow: auto;
+}
+
+#main-preview{
+
+  width: 35%;
+  height: 100%;
+  overflow: auto;
+
+}
+
+#menu-view{
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.sub_div{
+  border: 3px solid navy;
+
+}
 
 
 .keyInput {
@@ -28,12 +61,8 @@
   
 }
 
-/* ul li:before{
-  content: '\21A6';
-  margin: 0 1em;
-} */
 
-.valInput {
+ .valInput {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: rgb(1, 1, 15);
   background-color: #F4F4FC;
@@ -53,3 +82,4 @@
 .separator {
   font-weight: bold;
 }
+

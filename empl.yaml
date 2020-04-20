@@ -18,6 +18,11 @@ address:
     - country: Switzerland
       city: bern
       year: 2010
+      projects:
+        - development:
+            - projectName: BlackOrder
+              projectManager: Nick Jackman
+        - Automation
 department: automation
 designation: architect
 bonus: 1.52
@@ -26,4 +31,6 @@ skills:
   - javascript
   - ruby
   - python
+
+
 
