@@ -40,17 +40,28 @@ jsonBtn.addEventListener ('click', function(event){
     if (nodeList){
       let obj = new Object();
       nodeList.each( function (index){
-        console.log($(this).children('div').first().attr('class') === 'listItem');
+        //console.log($(this).children('div').first().attr('class') === 'listItem');
         console.log($(this).children('div').children('input').last().attr('class'));
         if ($(this).children('div').first().attr('class') === 'listItem'){
           console.log("Inside if statement");
-        obj[$(this).children('div').children('input').first().attr('value')] = $(this).children('div').children('input').last().attr('value');
+          let strVal = $(this).children('div').children('input').last().attr('value');
+          console.log("strVal:"+ strVal);
+          let valType = $(this).children('div').children('input').last().attr('type');  
+          console.log("valType:"+ valType);
+          console.log("***********"+ strToType(strVal,valType));
+          obj[$(this).children('div').children('input').first().attr('value')] = strToType(strVal,valType);
         } else{
           if ($(this).children('div').first().attr('class') === 'ArrayListDiv'){
             let objArray = new Array();
             $(this).children('ul').first().children().each(function(index){
                 if ($(this).children('div').first().attr('class') === 'listItem'){
-                  objArray.push ($(this).children('div').children('input').last().attr('value'));
+                  let strVal = $(this).children('div').children('input').last().attr('value');
+                  console.log("strVal:"+ strVal);
+                  let valType = $(this).children('div').children('input').last().attr('type'); 
+                  console.log("valType:"+ valType);
+                 // obj[$(this).children('div').children('input').first().attr('value')] = strToType(strVal,valType);
+                  console.log("------------"+ strToType(strVal,valType));
+                  objArray.push(strToType(strVal,valType));
                 } else {
                 objArray.push(createJSONObj($(this).children('ul').first().children()));
                 }
@@ -190,6 +201,26 @@ function getType(value){
       val_type ='';    
   }
   return val_type;
+}
+
+function strToType(strvalue, valType){
+  let returnValue;
+  switch (valType){
+
+    case 'number':
+      returnValue = Number(strvalue);
+      break;
+    case 'text':
+       returnValue = strvalue;
+      break;
+    case 'boolean':
+        returnValue = Boolean(strvalue);
+        break;
+    // add exception for invalid value type
+    default:
+      returnValue ='';    
+  }
+  return returnValue;
 }
 
 
