@@ -7,8 +7,6 @@ createTreeBtn.addEventListener('click', function(event){
   console.log('Inside listner')
   let yamlData = readYaml();
   console.log("Yaml data is:"+ JSON.stringify(yamlData));
-  // let mainDiv = document.createElement("div");
-  // mainDiv.setAttribute("id", "main-container");
   let mainDiv = document.getElementById('main-listView');
   let rootListDiv = document.createElement("div");
   rootListDiv.setAttribute("id","rootListDiv");
@@ -22,7 +20,6 @@ createTreeBtn.addEventListener('click', function(event){
   });  
   mainDiv.append(expandButton);
   mainDiv.appendChild(rootListDiv)
-  // document.body.appendChild(mainDiv);
   rootListDiv.appendChild(createObjNode(yamlData, "root"));
   $('.yamlList').hide();
 })
@@ -41,12 +38,9 @@ jsonBtn.addEventListener ('click', function(event){
   function createJSONObj(nodeList){
     if (nodeList){
       let obj = new Object();
-      nodeList.each( function (index){
-        //console.log($(this).children('div').first().prop('class') === 'listItem');
+      nodeList.each( function (){
         console.log($(this).children('div').children('input').last().prop('class'));
         if ($(this).children('div').first().prop('class') === 'listItem'){
-          console.log("Inside if statement");
-         //let strVal = $(this).children('div').children('input').last().prop('value');
          let strVal = $(this).children('div').children('input').last().prop('value');
           console.log("strVal:"+ strVal);
           let valType = $(this).children('div').children('input').last().attr('type');  
@@ -58,12 +52,10 @@ jsonBtn.addEventListener ('click', function(event){
             let objArray = new Array();
             $(this).children('ul').first().children().each(function(index){
                 if ($(this).children('div').first().prop('class') === 'listItem'){
-                  //let strVal = $(this).children('div').children('input').last().prop('value');
                   let strVal = $(this).children('div').children('input').last().prop('value');
                   console.log("strVal:"+ strVal);
                   let valType = $(this).children('div').children('input').last().attr('type'); 
                   console.log("valType:"+ valType);
-                 // obj[$(this).children('div').children('input').first().prop('value')] = strToType(strVal,valType);
                   console.log("------------"+ strToType(strVal,valType));
                   objArray.push(strToType(strVal,valType));
                 } else {
@@ -133,11 +125,9 @@ function createListItem(yamlKey, yamlVal){
     listDiv.appendChild(expandButton);
     expandButton.addEventListener('click', function(){
       if (yamlVal instanceof Array){
-        //$("#array-list-"+yamlKey).toggle('visible');
         $(this).parent('div').next("#array-list-"+yamlKey).toggle('visible')
       }else{
         $(this).parent('div').next("#list-"+yamlKey).toggle('visible')
-        // $("#list-"+yamlKey).toggle('visible');
       }
     })
   }
