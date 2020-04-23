@@ -3,6 +3,17 @@ html, body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+#header {
+text-align: center;
+border: 2px solid white;
+background-color: rgb(80, 132, 209);
+border-radius: 2px;
+height: 4%;
+color: #ccc;
+margin: 1pc;
+max-width: 100%
+}
+
 #main-container{
   display: flex;
   flex-direction: row;
@@ -70,7 +81,8 @@ html, body {
 
 #menu-view{
   flex-direction: column;
-  width: 100%;
+  max-width: 100%;
+  height: 10%;
 }
 
 

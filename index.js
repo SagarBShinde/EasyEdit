@@ -2,6 +2,8 @@ let $ = require('jquery');
 
 const createTreeBtn = document.getElementById('CreateBtn');
 const jsonBtn = document.getElementById('jsondwnld');
+const jsonTab = document.getElementById('jsonView');
+const yamlTab = document.getElementById('yamlView');
 
 createTreeBtn.addEventListener('click', function(event){
   console.log('Inside listner')
@@ -24,16 +26,22 @@ createTreeBtn.addEventListener('click', function(event){
   $('.yamlList').hide();
 })
 
-jsonBtn.addEventListener ('click', function(event){
+jsonTab.addEventListener ('click', function(event){
+  const yaml = require('js-yaml');  
+  let obj = new Object();
+    obj['root'] = createJSONObj($("#root").children());
+  $('#editor').val(JSON.stringify(obj.root, null, '\t'));
+ 
+})
+
+yamlTab.addEventListener ('click', function(event){
   const yaml = require('js-yaml');  
   let obj = new Object();
 
     obj['root'] = createJSONObj($("#root").children());
 
-  $('#editor').val(JSON.stringify(obj.root, null, '\t'));
+  $('#editor').val(yaml.safeDump(obj.root));
  
-  console.log(JSON.stringify(obj.root, null, '\t'));
-  console.log(yaml.safeDump(obj.root));
 })
   function createJSONObj(nodeList){
     if (nodeList){
@@ -73,6 +81,7 @@ jsonBtn.addEventListener ('click', function(event){
 
 }
 
+
 function createObjNode(jsonObj, divId){
   if (jsonObj === null)
   return;
@@ -110,6 +119,7 @@ function createListItem(yamlKey, yamlVal){
   listDiv.setAttribute("id", yamlKey+'_div');
   listDiv.appendChild(createKeyItem(yamlKey));
   listDiv.appendChild(createSeparatorItem());
+  
   if (typeof(yamlVal)!== "object") {
     listDiv.setAttribute("class", 'listItem');
     listDiv.appendChild(createValueItem(yamlVal));
@@ -117,7 +127,12 @@ function createListItem(yamlKey, yamlVal){
       if(yamlVal instanceof Array){
         listDiv.setAttribute("class", 'ArrayListDiv');
       }else{
+        if (yamlVal === null){
+          listDiv.setAttribute("class", 'listItem');
+          listDiv.appendChild(createValueItem(""));
+        } else {
         listDiv.setAttribute("class", 'listDiv');
+        }
       }
     let expandButton = document.createElement("button");
     expandButton.setAttribute("class", "expand-button");

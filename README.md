@@ -11,3 +11,4 @@ Things to complete
 - Update Readme
 - Add functionality of Add/ Delete node
 - Final touches for CSS and HTML
+- how null should be represented

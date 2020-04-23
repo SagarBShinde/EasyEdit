@@ -1,18 +1,18 @@
-name: John Dey
+name:
 age: 32
 vendor: false
 address:
   apt: 106a
   street: wards road
   area: newbury park
-  pin: IG27AZ
+  pin: 
   locality:
     city: London
     proviance: stratford
     Metro: true
   office: canary wharf
   work_location:
-    - country: England
+    - country: 
       city: London
       year: 2020
     - country: Switzerland

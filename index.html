@@ -10,14 +10,13 @@
   <body>
       <div id = "menu-view" class = sub_div>
           <button id='CreateBtn'>Create</button>
-          <button id='jsondwnld'>JSON</button>
     </div>
     <div id="main-container" class= main_div>
       <div id="main-listView" class= sub_div></div>
       <div id="main-preview" class= sub_div>
         <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'London')">JSON</button>
-            <button class="tablinks" onclick="openCity(event, 'Paris')">YAML</button>
+            <button id= "jsonView" class="tablinks">JSON</button>
+            <button id= "yamlView" class="tablinks">YAML</button>
           </div>
         <textarea id= "editor", class= "editor"> </textarea> 
       </div> 
