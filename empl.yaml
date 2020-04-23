@@ -12,7 +12,7 @@ address:
     Metro: true
   office: canary wharf
   work_location:
-    - country: 
+    - country: null
       city: London
       year: 2020
     - country: Switzerland

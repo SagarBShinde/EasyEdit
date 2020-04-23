@@ -129,7 +129,7 @@ function createListItem(yamlKey, yamlVal){
       }else{
         if (yamlVal === null){
           listDiv.setAttribute("class", 'listItem');
-          listDiv.appendChild(createValueItem(""));
+          listDiv.appendChild(createValueItem(yamlVal));
         } else {
         listDiv.setAttribute("class", 'listDiv');
         }
@@ -205,6 +205,10 @@ function getType(value){
     case 'boolean':
         val_type = 'boolean';   
         break;
+    // for null item the type is returned as object
+    case 'object':
+      val_type = 'null';
+      break;
     // add exception for invalid value type
     default:
       val_type ='';    
@@ -225,9 +229,11 @@ function strToType(strvalue, valType){
     case 'boolean':
         returnValue = Boolean(strvalue);
         break;
+    case 'null':
+    returnValue = null;
     // add exception for invalid value type
     default:
-      returnValue ='';    
+      returnValue = null;    
   }
   return returnValue;
 }
