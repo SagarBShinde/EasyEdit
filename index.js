@@ -33,42 +33,46 @@ jsonBtn.addEventListener ('click', function(event){
 
     obj['root'] = createJSONObj($("#root").children());
 
-  console.log(JSON.stringify(obj.root));
+  $('#editor').val(JSON.stringify(obj.root, null, '\t'));
+ 
+  console.log(JSON.stringify(obj.root, null, '\t'));
   console.log(yaml.safeDump(obj.root));
 })
   function createJSONObj(nodeList){
     if (nodeList){
       let obj = new Object();
       nodeList.each( function (index){
-        //console.log($(this).children('div').first().attr('class') === 'listItem');
-        console.log($(this).children('div').children('input').last().attr('class'));
-        if ($(this).children('div').first().attr('class') === 'listItem'){
+        //console.log($(this).children('div').first().prop('class') === 'listItem');
+        console.log($(this).children('div').children('input').last().prop('class'));
+        if ($(this).children('div').first().prop('class') === 'listItem'){
           console.log("Inside if statement");
-          let strVal = $(this).children('div').children('input').last().attr('value');
+         //let strVal = $(this).children('div').children('input').last().prop('value');
+         let strVal = $(this).children('div').children('input').last().prop('value');
           console.log("strVal:"+ strVal);
           let valType = $(this).children('div').children('input').last().attr('type');  
           console.log("valType:"+ valType);
           console.log("***********"+ strToType(strVal,valType));
-          obj[$(this).children('div').children('input').first().attr('value')] = strToType(strVal,valType);
+          obj[$(this).children('div').children('input').first().prop('value')] = strToType(strVal,valType);
         } else{
-          if ($(this).children('div').first().attr('class') === 'ArrayListDiv'){
+          if ($(this).children('div').first().prop('class') === 'ArrayListDiv'){
             let objArray = new Array();
             $(this).children('ul').first().children().each(function(index){
-                if ($(this).children('div').first().attr('class') === 'listItem'){
-                  let strVal = $(this).children('div').children('input').last().attr('value');
+                if ($(this).children('div').first().prop('class') === 'listItem'){
+                  //let strVal = $(this).children('div').children('input').last().prop('value');
+                  let strVal = $(this).children('div').children('input').last().prop('value');
                   console.log("strVal:"+ strVal);
                   let valType = $(this).children('div').children('input').last().attr('type'); 
                   console.log("valType:"+ valType);
-                 // obj[$(this).children('div').children('input').first().attr('value')] = strToType(strVal,valType);
+                 // obj[$(this).children('div').children('input').first().prop('value')] = strToType(strVal,valType);
                   console.log("------------"+ strToType(strVal,valType));
                   objArray.push(strToType(strVal,valType));
                 } else {
                 objArray.push(createJSONObj($(this).children('ul').first().children()));
                 }
             });
-            obj[$(this).children('div').children('input').first().attr('value')] = objArray;
+            obj[$(this).children('div').children('input').first().prop('value')] = objArray;
           } else {
-          obj[$(this).children('div').children('input').first().attr('value')] = createJSONObj($(this).children('ul').first().children());
+          obj[$(this).children('div').children('input').first().prop('value')] = createJSONObj($(this).children('ul').first().children());
           }
         }
       })
@@ -173,8 +177,8 @@ function readYaml(){
   const yaml = require('js-yaml');
 
   try {
-    //let fileContents = fs.readFileSync('./empl.yaml', 'utf8');
-    let fileContents = fs.readFileSync('./espn-app-android-app.yaml', 'utf8');
+    let fileContents = fs.readFileSync('./empl.yaml', 'utf8');
+    //let fileContents = fs.readFileSync('./espn-app-android-app.yaml', 'utf8');
     let data = yaml.safeLoad(fileContents);
     return data
   } catch (e) {

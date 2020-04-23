@@ -1,5 +1,6 @@
 html, body {
   height: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #main-container{
@@ -15,16 +16,27 @@ html, body {
 
 #main-listView{
 
-  width: 65%;
+  width: 55%;
   height: 100%;
   overflow: auto;
 }
 
 #main-preview{
 
-  width: 35%;
+  width: 45%;
   height: 100%;
   overflow: auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+}
+
+#editor{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 
 }
 

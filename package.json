@@ -8,6 +8,7 @@
   "author": "sagar.shinde",
   "license": "MIT",
   "devDependencies": {
+    "codemirror": "^5.53.2",
     "electron": "^8.2.0"
   },
   "dependencies": {
