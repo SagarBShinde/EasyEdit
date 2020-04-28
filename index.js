@@ -114,24 +114,31 @@ function createList(divId) {
 }
 
 function createListItem(yamlKey, yamlVal){
-  let listItem = document.createElement('li')
+  let listItem = document.createElement('li');
   let listDiv = document.createElement("div");
+  let typeDropDown = createTypeDropDown();
   listDiv.setAttribute("id", yamlKey+'_div');
   listDiv.appendChild(createKeyItem(yamlKey));
   listDiv.appendChild(createSeparatorItem());
   
   if (typeof(yamlVal)!== "object") {
     listDiv.setAttribute("class", 'listItem');
-    listDiv.appendChild(createValueItem(yamlVal));
+    let valItem = createValueItem(yamlVal);
+    listDiv.appendChild(valItem);
+    typeDropDown.value = getType(yamlVal);
+    
   } else{
       if(yamlVal instanceof Array){
         listDiv.setAttribute("class", 'ArrayListDiv');
+        typeDropDown.value = "Array"
       }else{
         if (yamlVal === null){
           listDiv.setAttribute("class", 'listItem');
           listDiv.appendChild(createValueItem(yamlVal));
+          typeDropDown.value = "null"
         } else {
         listDiv.setAttribute("class", 'listDiv');
+        typeDropDown.value = "Object"
         }
       }
     let expandButton = document.createElement("button");
@@ -146,8 +153,9 @@ function createListItem(yamlKey, yamlVal){
       }
     })
   }
- listItem.appendChild(listDiv)
-  return listItem;
+listDiv.appendChild(typeDropDown);
+listItem.appendChild(listDiv);
+return listItem;
 }
 
 function createKeyItem(yamlKey){
@@ -191,42 +199,66 @@ function readYaml(){
   }
 }
 
-function getType(value){
-  let val_type
-  switch (typeof value){
+// function getType(value){
+//   let val_type
+//   switch (typeof value){
 
-    case 'number':
-      val_type = 'number';   
-      break;
+//     case 'number':
+//       val_type = 'number';   
+//       break;
     
-    case 'string':
-        val_type = 'text';   
+//     case 'string':
+//         val_type = 'text';   
+//         break;
+//     case 'boolean':
+//         val_type = 'boolean';   
+//         break;
+//     // for null item the type is returned as object
+//     case 'object':
+//       val_type = 'null';
+//       break;
+//     // add exception for invalid value type
+//     default:
+//       val_type ='';    
+//   }
+//   return val_type;
+// }
+
+function getType(value){
+    let val_type
+    switch (typeof value){
+  
+      case 'number':
+        val_type = 'Number';   
+        break;  
+      case 'string':
+          val_type = 'String';   
+          break;
+      case 'boolean':
+          val_type = 'Boolean';   
+          break;
+      // for null item the type is returned as object
+      case 'object':
+        val_type = 'null';
         break;
-    case 'boolean':
-        val_type = 'boolean';   
-        break;
-    // for null item the type is returned as object
-    case 'object':
-      val_type = 'null';
-      break;
-    // add exception for invalid value type
-    default:
-      val_type ='';    
+      // add exception for invalid value type
+      default:
+        val_type ='';    
+    }
+    return val_type;
   }
-  return val_type;
-}
 
 function strToType(strvalue, valType){
   let returnValue;
   switch (valType){
 
-    case 'number':
+    case 'Number':
       returnValue = Number(strvalue);
       break;
-    case 'text':
+    case 'String':
        returnValue = strvalue;
       break;
-    case 'boolean':
+    case 'Boolean':
         returnValue = Boolean(strvalue);
         break;
     case 'null':
@@ -236,6 +268,22 @@ function strToType(strvalue, valType){
       returnValue = null;    
   }
   return returnValue;
+}
+
+function createTypeDropDown(){
+
+  let typeDropDown = document.createElement("select");
+  
+  typeDropDown.setAttribute("class", "typeDropDown");
+  typeDropDown.options.add(new Option("String"));
+  typeDropDown.options.add(new Option("Number"));
+  typeDropDown.options.add(new Option("Boolean"));
+  typeDropDown.options.add(new Option("Array"));
+  typeDropDown.options.add(new Option("Object"));
+  typeDropDown.options.add(new Option("null"));
+
+  return typeDropDown;
+
 }
 
 

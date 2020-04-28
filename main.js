@@ -1,9 +1,9 @@
 console.log("From the main.js");
 
 const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-// const {app, BrowserWindow} = require('electron')
+//const app = electron.app;
+//const BrowserWindow = electron.BrowserWindow;
+const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -21,18 +21,22 @@ function createWindow () {
     
   }));  
   win.webContents.openDevTools(); 
+
+  win.on('closed', () => {
+    win = null
+ });
+
 }
 
 
-//  win.on('closed', () => {
-//    win = null
- // });
+ 
 
 
 app.on('ready', createWindow);
 
 
 app.on('window-all-closed', () => {
+  app.quit();
   if (process.platform !== 'darwin') {
     app.quit();
   }
