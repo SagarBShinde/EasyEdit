@@ -13,18 +13,47 @@ createTreeBtn.addEventListener('click', function(event){
   let rootListDiv = document.createElement("div");
   rootListDiv.setAttribute("id","rootListDiv");
   
-  let expandButton = document.createElement("button");
-    expandButton.setAttribute("class", "expand-button");
-    expandButton.setAttribute("id", "root-expand-button");
-    expandButton.innerHTML="&#43;"
+  let expandButton = createButton("&#43;","expand-button","root-expand-button");
   expandButton.addEventListener('click', function(){
     $("#root").toggle('visible');
   });  
+  
   mainDiv.append(expandButton);
   mainDiv.appendChild(rootListDiv)
   rootListDiv.appendChild(createObjNode(yamlData, "root"));
   $('.yamlList').hide();
+  console.log("addding event listener...............")
+  let deleteBtn_list = document.querySelectorAll(".deleteBtn");
+  let addChildBtn_list = document.querySelectorAll(".addChildBtn");
+  let addSibdBtn_list = document.querySelectorAll(".addSibdBtn");
+  deleteBtn_list.forEach(function (deleteBtn) {
+    deleteBtn.addEventListener('click', function(){
+    $(deleteBtn).closest('li')[0].remove();
+    });
+  });
+
+  addSibdBtn_list.forEach(function (addSibdBtn) {
+    console.log("Adding listners for add");
+    addSibdBtn.addEventListener('click', function(){
+    let itemList = $(addSibdBtn).closest('ul')[0]
+    console.log("Inside listners for add Child");
+      $(createListItem("","")).insertAfter(($(addSibdBtn).closest('li')[0]));
+    });
+  });
+
+  addChildBtn_list.forEach(function (addChildBtn) {
+    console.log("Adding listners for add child");
+    addSibdBtn.addEventListener('click', function(){
+    let itemList = $(addSibdBtn).closest('li')
+    console.log("Inside listners for add Child");
+      $(createListItem("","")).insertAfter(($(addSibdBtn).closest('li')[0]));
+    });
+  });
+
+  
+  
 })
+
 
 jsonTab.addEventListener ('click', function(event){
   const yaml = require('js-yaml');  
@@ -37,9 +66,7 @@ jsonTab.addEventListener ('click', function(event){
 yamlTab.addEventListener ('click', function(event){
   const yaml = require('js-yaml');  
   let obj = new Object();
-
     obj['root'] = createJSONObj($("#root").children());
-
   $('#editor').val(yaml.safeDump(obj.root));
  
 })
@@ -141,9 +168,7 @@ function createListItem(yamlKey, yamlVal){
         typeDropDown.value = "Object"
         }
       }
-    let expandButton = document.createElement("button");
-    expandButton.setAttribute("class", "expand-button");
-    expandButton.innerHTML="&#43;"
+    let expandButton = createButton("&#43;","expand-button",yamlKey+"-expand-button");
     listDiv.appendChild(expandButton);
     expandButton.addEventListener('click', function(){
       if (yamlVal instanceof Array){
@@ -153,6 +178,9 @@ function createListItem(yamlKey, yamlVal){
       }
     })
   }
+listDiv.appendChild(createButton("&#8618;", "addChildBtn", "addChild"+yamlKey));
+listDiv.appendChild(createButton("&#8680;", "addSibdBtn", "addSib"+yamlKey));
+listDiv.appendChild(createButton("&#128465;", "deleteBtn", "del"+yamlKey));
 listDiv.appendChild(typeDropDown);
 listItem.appendChild(listDiv);
 return listItem;
@@ -198,31 +226,6 @@ function readYaml(){
     console.log(e);
   }
 }
-
-// function getType(value){
-//   let val_type
-//   switch (typeof value){
-
-//     case 'number':
-//       val_type = 'number';   
-//       break;
-    
-//     case 'string':
-//         val_type = 'text';   
-//         break;
-//     case 'boolean':
-//         val_type = 'boolean';   
-//         break;
-//     // for null item the type is returned as object
-//     case 'object':
-//       val_type = 'null';
-//       break;
-//     // add exception for invalid value type
-//     default:
-//       val_type ='';    
-//   }
-//   return val_type;
-// }
 
 function getType(value){
     let val_type
@@ -285,6 +288,16 @@ function createTypeDropDown(){
   return typeDropDown;
 
 }
+
+function createButton(btnLabel, btnClass, btnId){
+  let btn = document.createElement("button");
+    btn.innerHTML=btnLabel
+    btn.setAttribute("class", btnClass);
+    btn.setAttribute("id", btnId);
+    return btn;
+}
+
+
 
 
 
