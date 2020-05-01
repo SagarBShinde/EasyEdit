@@ -22,14 +22,6 @@ createTreeBtn.addEventListener('click', function(event){
   mainDiv.appendChild(rootListDiv)
   rootListDiv.appendChild(createObjNode(yamlData, "root"));
   $('.yamlList').hide();
-  console.log("addding event listener...............")
-  let deleteBtn_list = document.querySelectorAll(".deleteBtn");
-  let addChildBtn_list = document.querySelectorAll(".addChildBtn");
-  let addSibdBtn_list = document.querySelectorAll(".addSibdBtn");
-  
-  // addEventListenerDel(deleteBtn_list);
-  // addEventListenerSib(addSibdBtn_list);
-  // addEventListenerChd(addChildBtn_list);
 
 })
 
@@ -157,37 +149,21 @@ function createListItem(yamlKey, yamlVal){
       }
     })
   }
-let addChildBtn = createButton("&#8618;", "addChildBtn", "addChild"+yamlKey);
-let deleteBtn = createButton("&#128465;", "deleteBtn", "del"+yamlKey);
-let addSibBtn = createButton("&#8680;", "addSibBtn", "addSib"+yamlKey);
+  let addChildBtn = createButton("&#8618;", "addChildBtn", "addChild"+yamlKey);
+  let deleteBtn = createButton("&#128465;", "deleteBtn", "del"+yamlKey);
+  let addSibBtn = createButton("&#8680;", "addSibBtn", "addSib"+yamlKey);
 
-addChildBtn.addEventListener('click', function(){
-  let divId= $(addChildBtn).siblings('input').first().prop("value")+ "_div";
-  let objList = createList(divId)
-  let listItem = createListItem("","");
-  objList.appendChild(listItem);
-  $(addChildBtn).closest('li')[0].appendChild(objList); 
-});
+  addEventListenerDel(deleteBtn);
+  addEventListenerChd(addChildBtn);
+  addEventListenerSib(addSibBtn);
 
-addSibBtn.addEventListener('click', function(){
-  console.log("Inside listners for add Child");
-    $(createListItem("","")).insertAfter(($(addSibBtn).closest('li')[0]));
-});
+  listDiv.appendChild(addChildBtn);
+  listDiv.appendChild(addSibBtn);
+  listDiv.appendChild(deleteBtn);
 
-deleteBtn.addEventListener('click', function(){
-  $(deleteBtn).closest('li')[0].remove();
-}); 
-
-listDiv.appendChild(addChildBtn);
-listDiv.appendChild(addSibBtn);
-listDiv.appendChild(deleteBtn);
-
-// listDiv.appendChild(createButton("&#8618;", "addChildBtn", "addChild"+yamlKey));
-// listDiv.appendChild(createButton("&#8680;", "addSibdBtn", "addSib"+yamlKey));
-// listDiv.appendChild(createButton("&#128465;", "deleteBtn", "del"+yamlKey));
-listDiv.appendChild(typeDropDown);
-listItem.appendChild(listDiv);
-return listItem;
+  listDiv.appendChild(typeDropDown);
+  listItem.appendChild(listDiv);
+  return listItem;
 }
 
 function createKeyItem(yamlKey){
@@ -301,35 +277,29 @@ function createButton(btnLabel, btnClass, btnId){
     return btn;
 }
 
-function addEventListenerDel(buttonList){
-  buttonList.forEach(function (deleteBtn) {
-    deleteBtn.addEventListener('click', function(){
-      $(deleteBtn).closest('li')[0].remove();
+function addEventListenerDel(button){
+  button.addEventListener('click', function(){
+      $(button).closest('li')[0].remove();
     });  
-  })
 } 
 
-function addEventListenerSib(buttonList){
+function addEventListenerSib(button){
   console.log("Adding listners for Sibling");
-  buttonList.forEach(function(addSibdBtn){
-    addSibdBtn.addEventListener('click', function(){
+    button.addEventListener('click', function(){
       console.log("Inside listners for add Child");
-        $(createListItem("","")).insertAfter(($(addSibdBtn).closest('li')[0]));
-    });
-  });  
+        $(createListItem("","")).insertAfter(($(button).closest('li')[0]));
+    });  
 }
 
 
 
-function addEventListenerChd(buttonList){ 
-  buttonList.forEach(function(addChildBtn){
+function addEventListenerChd(button){ 
     console.log("Adding listners for add child");
-    addChildBtn.addEventListener('click', function(){
-      let divId= $(addChildBtn).siblings('input').first().prop("value")+ "_div";
+    button.addEventListener('click', function(){
+      let divId= $(button).siblings('input').first().prop("value")+ "_div";
       let objList = createList(divId)
       let listItem = createListItem("","");
       objList.appendChild(listItem);
-      $(addChildBtn).closest('li')[0].appendChild(objList); 
+      $(button).closest('li')[0].appendChild(objList); 
   });
-});
 }
