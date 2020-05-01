@@ -26,32 +26,11 @@ createTreeBtn.addEventListener('click', function(event){
   let deleteBtn_list = document.querySelectorAll(".deleteBtn");
   let addChildBtn_list = document.querySelectorAll(".addChildBtn");
   let addSibdBtn_list = document.querySelectorAll(".addSibdBtn");
-  deleteBtn_list.forEach(function (deleteBtn) {
-    deleteBtn.addEventListener('click', function(){
-    $(deleteBtn).closest('li')[0].remove();
-    });
-  });
-
-  addSibdBtn_list.forEach(function (addSibdBtn) {
-    console.log("Adding listners for add");
-    addSibdBtn.addEventListener('click', function(){
-    let itemList = $(addSibdBtn).closest('ul')[0]
-    console.log("Inside listners for add Child");
-      $(createListItem("","")).insertAfter(($(addSibdBtn).closest('li')[0]));
-    });
-  });
-
-  addChildBtn_list.forEach(function (addChildBtn) {
-    console.log("Adding listners for add child");
-    addSibdBtn.addEventListener('click', function(){
-    let itemList = $(addSibdBtn).closest('li')
-    console.log("Inside listners for add Child");
-      $(createListItem("","")).insertAfter(($(addSibdBtn).closest('li')[0]));
-    });
-  });
-
   
-  
+  // addEventListenerDel(deleteBtn_list);
+  // addEventListenerSib(addSibdBtn_list);
+  // addEventListenerChd(addChildBtn_list);
+
 })
 
 
@@ -178,9 +157,34 @@ function createListItem(yamlKey, yamlVal){
       }
     })
   }
-listDiv.appendChild(createButton("&#8618;", "addChildBtn", "addChild"+yamlKey));
-listDiv.appendChild(createButton("&#8680;", "addSibdBtn", "addSib"+yamlKey));
-listDiv.appendChild(createButton("&#128465;", "deleteBtn", "del"+yamlKey));
+let addChildBtn = createButton("&#8618;", "addChildBtn", "addChild"+yamlKey);
+let deleteBtn = createButton("&#128465;", "deleteBtn", "del"+yamlKey);
+let addSibBtn = createButton("&#8680;", "addSibBtn", "addSib"+yamlKey);
+
+addChildBtn.addEventListener('click', function(){
+  let divId= $(addChildBtn).siblings('input').first().prop("value")+ "_div";
+  let objList = createList(divId)
+  let listItem = createListItem("","");
+  objList.appendChild(listItem);
+  $(addChildBtn).closest('li')[0].appendChild(objList); 
+});
+
+addSibBtn.addEventListener('click', function(){
+  console.log("Inside listners for add Child");
+    $(createListItem("","")).insertAfter(($(addSibBtn).closest('li')[0]));
+});
+
+deleteBtn.addEventListener('click', function(){
+  $(deleteBtn).closest('li')[0].remove();
+}); 
+
+listDiv.appendChild(addChildBtn);
+listDiv.appendChild(addSibBtn);
+listDiv.appendChild(deleteBtn);
+
+// listDiv.appendChild(createButton("&#8618;", "addChildBtn", "addChild"+yamlKey));
+// listDiv.appendChild(createButton("&#8680;", "addSibdBtn", "addSib"+yamlKey));
+// listDiv.appendChild(createButton("&#128465;", "deleteBtn", "del"+yamlKey));
 listDiv.appendChild(typeDropDown);
 listItem.appendChild(listDiv);
 return listItem;
@@ -297,13 +301,35 @@ function createButton(btnLabel, btnClass, btnId){
     return btn;
 }
 
+function addEventListenerDel(buttonList){
+  buttonList.forEach(function (deleteBtn) {
+    deleteBtn.addEventListener('click', function(){
+      $(deleteBtn).closest('li')[0].remove();
+    });  
+  })
+} 
+
+function addEventListenerSib(buttonList){
+  console.log("Adding listners for Sibling");
+  buttonList.forEach(function(addSibdBtn){
+    addSibdBtn.addEventListener('click', function(){
+      console.log("Inside listners for add Child");
+        $(createListItem("","")).insertAfter(($(addSibdBtn).closest('li')[0]));
+    });
+  });  
+}
 
 
 
-
-
-
-
-
-
-
+function addEventListenerChd(buttonList){ 
+  buttonList.forEach(function(addChildBtn){
+    console.log("Adding listners for add child");
+    addChildBtn.addEventListener('click', function(){
+      let divId= $(addChildBtn).siblings('input').first().prop("value")+ "_div";
+      let objList = createList(divId)
+      let listItem = createListItem("","");
+      objList.appendChild(listItem);
+      $(addChildBtn).closest('li')[0].appendChild(objList); 
+  });
+});
+}
