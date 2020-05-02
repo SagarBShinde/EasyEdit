@@ -45,25 +45,31 @@ yamlTab.addEventListener ('click', function(event){
     if (nodeList){
       let obj = new Object();
       nodeList.each( function (){
-        console.log($(this).children('div').children('input').last().prop('class'));
-        if ($(this).children('div').first().prop('class') === 'listItem'){
-         let strVal = $(this).children('div').children('input').last().prop('value');
+        console.log("Priting drop down value")
+        let data_type = $(this).children('div').children('select').first().prop('value');
+        console.log("Data type is:"+ data_type);
+       // if ($(this).children('div').first().prop('class') === 'listItem'){
+        if ( data_type === 'String' || data_type === 'Number' || data_type === 'Boolean'){ 
+          let strVal = $(this).children('div').children('input').last().prop('value');
           console.log("strVal:"+ strVal);
           let valType = $(this).children('div').children('input').last().attr('type');  
-          console.log("valType:"+ valType);
-          console.log("***********"+ strToType(strVal,valType));
-          obj[$(this).children('div').children('input').first().prop('value')] = strToType(strVal,valType);
+          // console.log("valType:"+ valType);
+          console.log("***********"+ strToType(strVal,data_type));
+          obj[$(this).children('div').children('input').first().prop('value')] = strToType(strVal,data_type);
         } else{
-          if ($(this).children('div').first().prop('class') === 'ArrayListDiv'){
+         // if ($(this).children('div').first().prop('class') === 'ArrayListDiv'){
+          if (data_type === 'Array'){ 
             let objArray = new Array();
             $(this).children('ul').first().children().each(function(index){
-                if ($(this).children('div').first().prop('class') === 'listItem'){
+              let data_type2= $(this).children('div').first().children('select').first().prop("value");
+               // if ($(this).children('div').first().children('select').first() === 'listItem'){
+                if (data_type2 === 'String' || data_type2 === 'Number' || data_type2 === 'Boolean'){   
                   let strVal = $(this).children('div').children('input').last().prop('value');
                   console.log("strVal:"+ strVal);
-                  let valType = $(this).children('div').children('input').last().attr('type'); 
-                  console.log("valType:"+ valType);
-                  console.log("------------"+ strToType(strVal,valType));
-                  objArray.push(strToType(strVal,valType));
+                  // let valType = $(this).children('div').children('input').last().attr('type'); 
+                  // console.log("valType:"+ valType);
+                  console.log("------------"+ strToType(strVal,data_type2));
+                  objArray.push(strToType(strVal,data_type2));
                 } else {
                 objArray.push(createJSONObj($(this).children('ul').first().children()));
                 }
