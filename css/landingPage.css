@@ -10,8 +10,18 @@ background-color: rgb(80, 132, 209);
 border-radius: 2px;
 height: 4%;
 color: #ccc;
-margin: 1pc;
+margin: 0pc;
 max-width: 100%
+}
+
+.expand-button{
+  height: 8px;
+  width: 8px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0px 0px 0px;
+  margin: 2px;
 }
 
 #main-container{
@@ -85,9 +95,49 @@ max-width: 100%
 
 
 #menu-view{
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   max-width: 100%;
   height: 10%;
+  text-align: center;
+  font-size: 14px;
+  padding: 1%;
+
+}
+
+#inputFormatLabel{
+  flex: 1 0 40%;
+  text-align: end;
+  margin-right: 3%;
+  
+}
+
+#inputTypeForm{
+  flex: 1 0 40%;
+  text-align: start;
+  margin-left: 2%;
+}
+
+#selectInputLabel{
+  flex: 1 0 40%;
+  text-align: end;
+  margin-right: 3%;
+  
+}
+
+#selectInput{
+  flex: 1 0 40%;
+  text-align: start;
+  margin-left: 2%; 
+}
+
+.optRadio{
+  margin: 10px;
+}
+
+#format_select{
+  display: inline;
 }
 
 
@@ -105,11 +155,12 @@ max-width: 100%
   white-space: nowrap;
   text-align: center;
   font-weight: bold;
-
-  border: 1.5px solid #A6A5D3;
+  border: none;
+  margin: 1.5px
+  /* border: 1.5px solid #A6A5D3;
   border-radius: 5px;
   margin: 5px;
-  padding: 2px
+  padding: 2px */
 }
 
 .yamlList{
@@ -129,16 +180,19 @@ max-width: 100%
   white-space: nowrap;
   text-align: center;
   font-weight: bold;
-
-  border: 1.5px solid #A6A5D3;
+  border:none;
+  margin: 1.5px
+  /* border: 1.5px solid #A6A5D3;
   border-radius: 5px;
   margin: 5px;
-  padding: 2px
+  padding: 2px */
 
 }
 
 .separator {
   font-weight: bold;
+  margin-left: 1.5px;
+  margin-right: 1.5px
 }
 
 .typeDropDown{

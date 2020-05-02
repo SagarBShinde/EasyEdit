@@ -1,11 +1,25 @@
 let $ = require('jquery');
 
-const createTreeBtn = document.getElementById('CreateBtn');
-const jsonBtn = document.getElementById('jsondwnld');
+const viewBtn = document.getElementById('View');
 const jsonTab = document.getElementById('jsonView');
 const yamlTab = document.getElementById('yamlView');
+const openFile = document.querySelector("#selectFile");
+const {dialog} = require('electron').remote;
 
-createTreeBtn.addEventListener('click', function(event){
+openFile.addEventListener('click', function(){
+  dialog.showOpenDialog({
+    properties: ['openFile', 'multiSelections']
+}, function (files) {
+    if (files !== undefined) {
+      console.log("Inside the if")  
+      console.log(files[0]);
+    }else{
+      alert("No file selected");
+    }
+  });
+});
+
+viewBtn.addEventListener('click', function(event){
   console.log('Inside listner')
   let yamlData = readYaml();
   console.log("Yaml data is:"+ JSON.stringify(yamlData));
@@ -155,29 +169,36 @@ function createListItem(yamlKey, yamlVal){
       }
     })
   }
-  let addChildBtn = createButton("&#8618;", "addChildBtn", "addChild"+yamlKey);
-  let deleteBtn = createButton("&#128465;", "deleteBtn", "del"+yamlKey);
-  let addSibBtn = createButton("&#8680;", "addSibBtn", "addSib"+yamlKey);
+  // let addChildBtn = createButton("&#8618;", "addChildBtn", "addChild"+yamlKey);
+  // let deleteBtn = createButton("&#128465;", "deleteBtn", "del"+yamlKey);
+  // let addSibBtn = createButton("&#8680;", "addSibBtn", "addSib"+yamlKey);
 
-  addEventListenerDel(deleteBtn);
-  addEventListenerChd(addChildBtn);
-  addEventListenerSib(addSibBtn);
+  // addEventListenerDel(deleteBtn);
+  // addEventListenerChd(addChildBtn);
+  // addEventListenerSib(addSibBtn);
 
-  listDiv.appendChild(addChildBtn);
-  listDiv.appendChild(addSibBtn);
-  listDiv.appendChild(deleteBtn);
+  // listDiv.appendChild(addChildBtn);
+  // listDiv.appendChild(addSibBtn);
+  // listDiv.appendChild(deleteBtn);
 
-  listDiv.appendChild(typeDropDown);
+  // listDiv.appendChild(typeDropDown);
   listItem.appendChild(listDiv);
   return listItem;
 }
 
 function createKeyItem(yamlKey){
-  let keyNode = document.createElement('input');
+  // let keyNode = document.createElement('input');
+  // keyNode.setAttribute("id", yamlKey);
+  // keyNode.setAttribute("class", "keyInput");
+  // keyNode.setAttribute("type", getType(yamlKey));
+  // keyNode.setAttribute("value", yamlKey);
+  // return keyNode;
+
+  let keyNode = document.createElement('span');
   keyNode.setAttribute("id", yamlKey);
   keyNode.setAttribute("class", "keyInput");
   keyNode.setAttribute("type", getType(yamlKey));
-  keyNode.setAttribute("value", yamlKey);
+  keyNode.innerHTML = yamlKey;
   return keyNode;
 
 }
@@ -190,11 +211,18 @@ function createSeparatorItem(){
 }
 
 function createValueItem(yamlval){
-  let valNode = document.createElement('input');
+  // let valNode = document.createElement('input');
+  // valNode.setAttribute("id", yamlval)
+  // valNode.setAttribute("class", "valInput")
+  // valNode.setAttribute("type", getType(yamlval));
+  // valNode.setAttribute("value", yamlval);
+  // return valNode;
+
+  let valNode = document.createElement('span');
   valNode.setAttribute("id", yamlval)
   valNode.setAttribute("class", "valInput")
   valNode.setAttribute("type", getType(yamlval));
-  valNode.setAttribute("value", yamlval);
+  valNode.innerHTML =  yamlval;
   return valNode;
 
 }
