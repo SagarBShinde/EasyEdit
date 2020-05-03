@@ -4,25 +4,43 @@ const viewBtn = document.getElementById('View');
 const jsonTab = document.getElementById('jsonView');
 const yamlTab = document.getElementById('yamlView');
 const openFile = document.querySelector("#selectFile");
-const {dialog} = require('electron').remote;
+const readPrivew = document.querySelector("#ReadPreview");
+// const {dialog} = require('electron').remote;
+const app = require('electron').remote
+const dialog = app.dialog
+const fs = require('fs')
+var inputData = "";
 
-openFile.addEventListener('click', function(){
-  dialog.showOpenDialog({
-    properties: ['openFile', 'multiSelections']
-}, function (files) {
-    if (files !== undefined) {
-      console.log("Inside the if")  
-      console.log(files[0]);
-    }else{
-      alert("No file selected");
+openFile.onclick = () =>{
+   console.log ("Button clicked");
+   dialog.showOpenDialog(app.getCurrentWindow(), {
+    properties: ["openFile", "multiSelections"]
+    }).then(result => {
+     if (result.canceled === false) {
+        console.log("Selected file paths:")
+        document.getElementById("fileLocation").setAttribute("value" , result.filePaths[0])
+        inputData = readFile(result.filePaths[0]);
     }
-  });
-});
+  }).catch(err => {
+      console.log(err)
+  })
+
+}
+
+readPrivew.onclick = () =>{
+  const yaml = require('js-yaml'); 
+  console.log("Reading from preview panel");
+  inputData = yaml.safeLoad(document.querySelector("#editor").value);
+}
+
+
+
 
 viewBtn.addEventListener('click', function(event){
   console.log('Inside listner')
-  let yamlData = readYaml();
-  console.log("Yaml data is:"+ JSON.stringify(yamlData));
+ // let yamlData = readYaml();
+ // console.log("Input data is:"+ JSON.stringify(yamlData));
+ console.log("Input data is:"+ JSON.stringify(inputData));
   let mainDiv = document.getElementById('main-listView');
   let rootListDiv = document.createElement("div");
   rootListDiv.setAttribute("id","rootListDiv");
@@ -34,7 +52,8 @@ viewBtn.addEventListener('click', function(event){
   
   mainDiv.append(expandButton);
   mainDiv.appendChild(rootListDiv)
-  rootListDiv.appendChild(createObjNode(yamlData, "root"));
+  //rootListDiv.appendChild(createObjNode(yamlData, "root"));
+  rootListDiv.appendChild(createObjNode(inputData, "root"));
   $('.yamlList').hide();
 
 })
@@ -227,18 +246,75 @@ function createValueItem(yamlval){
 
 }
 
-function readYaml(){
+function readFile(filePath){
   const fs = require('fs');
   const yaml = require('js-yaml');
 
   try {
-    let fileContents = fs.readFileSync('./empl.yaml', 'utf8');
+    let fileContents = fs.readFileSync(filePath, 'utf8');
+    console.log("File contents are:"+ fileContents);
     //let fileContents = fs.readFileSync('./espn-app-android-app.yaml', 'utf8');
-    let data = yaml.safeLoad(fileContents);
-    return data
+    let fileType = "";
+    //let data = yaml.safeLoad(fileContents);
+    // fileTypeElements = document.getElementsByName('optFileType')
+    // for (let i = 0; i < fileTypeElements.length; i++){
+    //   if (fileTypeElements[i].checked === true){
+    //     fileType = fileTypeElements[i].labels[0].innerText
+    //     console.log("File type is:"+ fileType);
+    //     break;
+    //   }
+    // }
+    return readData(fileContents, fileType);
+    // switch(fileType) {
+    //   case "JSON":
+    //       console.log("File contents are:"+ fileContents);
+    //       inputData = JSON.parse(fileContents);
+    //       break;
+    //     case "YAML":
+    //       inputData = yaml.safeLoad(fileContents);
+    //       break;
+
+    //     default:
+    //       console.log("Unknown file format")
+    //       inputData = ""
+    // }
+    // return inputData;
   } catch (e) {
     console.log(e);
   }
+}
+
+function getDataType(){
+  let DataTypeElements = document.getElementsByName('optFileType');
+  let DataType = ""
+  for (let i = 0; i < DataTypeElements.length; i++){
+    if (DataTypeElements[i].checked === true){
+      DataType = fileTypeElements[i].labels[0].innerText
+      console.log("File type is:"+ fileType);
+      break;
+    }
+    return DataType 
+ }
+}
+
+function readData(content, contentType){
+  let inputData
+  switch(contentType) {
+    case "JSON":
+        console.log("File contents are:"+ fileContents);
+        inputData = JSON.parse(content);
+        break;
+      case "YAML":
+        inputData = yaml.safeLoad(content);
+        break;
+
+      default:
+        console.log("Unknown file or Data type")
+        inputData = ""
+  }
+  return inputData;
+
+
 }
 
 function getType(value){
@@ -336,4 +412,5 @@ function addEventListenerChd(button){
       objList.appendChild(listItem);
       $(button).closest('li')[0].appendChild(objList); 
   });
-}
+  }
+

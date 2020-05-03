@@ -9,21 +9,21 @@
   <header id='header'>Easy JSON and YAML Editor</header>
   <body>
       <div id = "menu-view" class = sub_div>
-          <div id = 'inputFormatLabel'>Select Input File Format:</div>
+        <div id = 'inputFormatLabel'>Select Input File Format:</div>
           <div id = 'selectInputLabel'>Select file or Paste text in the Privew Area:</div>
           <div id = 'inputTypeForm'>  
             <form id = 'format_select'>
               <label class="radio-inline">
-                <input class= 'optRadio', type="radio" name="optJSON">JSON
-              </label>
+                <input id = 'JSONType',class= 'optRadio', type="radio" name="optFileType">JSON</label>
               <label class="radio-inline">
-                <input class= 'optRadio', type="radio" name="optYAML">YAML
-              </label>
+                <input id = 'YAMLType', class= 'optRadio', type="radio" name="optFileType">YAML</label>
             </form>
           </div>
           <div id = 'selectInput'>
             <input id= 'fileLocation'></input>
             <button id = 'selectFile'>Open</button>
+            <span id = "or">OR</span>
+            <button id = 'ReadPreview'>Read Privew</button>
           </div>  
         </div> 
       </div>

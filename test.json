@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "id": "2244150",
+  "type": "show",
+  "show": {
+      "id": "SH559060",
+      "brand": "001",
+      "type": "Show",
+      "title": "Jimmy Kimmel Live!",
+      "sortTitle": "Jimmy Kimmel Live!",
+      "language": "en",
+      "genre": "latenight",
+      "dayPart": "Late Night",
+      "dailyShow": true,
+      "showPrefix": "JKL",
+      "social": {
+          "accounts": [
+              {
+                  "type": "twitter",
+                  "value": "jimmykimmel"
+              },
+              {
+                  "type": "facebook",
+                  "value": "jimmykimmel"
+              },
+              {
+                  "type": "instagram",
+                  "value": "jimmykimmel"
+              }
+          ]
+      },
+      "nielsen": {
+          "genres": [
+              "CV"
+          ]
+      },
+      "trackTitle": "jimmykimmellive",
+      "audioDescription": false
+  },
+  "modules": [
+      {
+          "id": "2266384",
+          "type": "freetext",
+          "name": "freetext_2266384",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/freetext/2266384?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060"
+      },
+      {
+          "id": "1350290",
+          "type": "videoplayer",
+          "name": "video_player_vod",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/videoplayer/1350290?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&video={video}"
+      },
+      {
+          "id": "1367182",
+          "type": "about",
+          "name": "about_1367182",
+          "title": "About",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/about/1367182?brand=001&device=003_2&layout=2244150&show=SH559060"
+      },
+      {
+          "id": "3317220",
+          "type": "tilegroup",
+          "name": "show_latest_clips",
+          "title": "jimmy kimmel's quarantine minilogues",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/3317220?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2128060#season18",
+          "type": "tilegroup",
+          "name": "tilegroup_show_season_multiple",
+          "title": "season 18",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2128060?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&season=18&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live/season-18"
+      },
+      {
+          "id": "2415171",
+          "type": "tilegroup",
+          "name": "show_latest_clips",
+          "title": "latest clips",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2415171?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2997297",
+          "type": "tilegroup",
+          "name": "show_latest_clips",
+          "title": "the bachelor on jkl",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2997297?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2415412",
+          "type": "tilegroup",
+          "name": "show_latest_clips",
+          "title": "mean tweets",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2415412?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2415404",
+          "type": "tilegroup",
+          "name": "show_latest_clips",
+          "title": "music performances",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2415404?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "1423715",
+          "type": "tilegroup",
+          "name": "related_shows",
+          "title": "recommended shows",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/1423715?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2284575",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Jimmy Kimmel 3 Marketing Tiles",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2284575?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2284579",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Jimmy Kimmel 4 Marketing Tiles",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2284579?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2284675",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Display Disclaimer Jimmy Kimmel Live Marketing Module - External Link",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2284675?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2284686",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Jimmy Kimmel Half Marketing Module - External Link",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2284686?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2284690",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Jimmy Kimmel Slim Marketing Module - Internal Link",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2284690?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2332682",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Link to ipowow test site",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2332682?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2348380",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Oscars External",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2348380?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2348413",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Oscars Webview",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2348413?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      },
+      {
+          "id": "2835919",
+          "type": "tilegroup",
+          "name": "marketing_banner",
+          "title": "Jimmy Kimmel Slim Marketing Module - Live",
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/module/tilegroup/2835919?brand=001&device=003_2&authlevel=0&layout=2244150&show=SH559060&start={start}&size={size}",
+          "urlValue": "/shows/jimmy-kimmel-live"
+      }
+  ],
+  "themes": [
+      {
+          "id": "1428227",
+          "type": "hero",
+          "palette": "dark",
+          "accent": "garnet",
+          "name": "Jimmy Kimmel Live - Theme - Hero",
+          "title": "<strong>WEEKNIGHTS</strong> 11:35|10:35c",
+          "link": {
+              "type": "show",
+              "external": false,
+              "disclaimer": false,
+              "id": "53194",
+              "value": "SH559060",
+              "urlValue": "/shows/jimmy-kimmel-live"
+          },
+          "images": [
+              {
+                  "id": "2057440",
+                  "value": "https://cdn1.edgedatg.com/aws/v2/abc/JimmyKimmelLive/theme/1428227/d09c2126eab46b7650363f1d4a6c15ab/750x750-Q100_d09c2126eab46b7650363f1d4a6c15ab.jpg",
+                  "type": "showkeyart",
+                  "width": 750,
+                  "height": 750,
+                  "format": "jpg"
+              },
+              {
+                  "id": "2156571",
+                  "value": "https://cdn1.edgedatg.com/aws/v2/abc/JimmyKimmelLive/theme/1428227/090eb9c8cc297c2cfc976076494e3e94/360x480-Q75_090eb9c8cc297c2cfc976076494e3e94.jpg",
+                  "type": "auth",
+                  "width": 360,
+                  "height": 480,
+                  "format": "jpg"
+              }
+          ],
+          "colors": [
+              {
+                  "type": "background",
+                  "red": 16,
+                  "green": 18,
+                  "blue": 31,
+                  "alpha": 1
+              }
+          ],
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/layout?brand=001&device=003_2&authlevel=0&type=show&show=SH559060"
+      },
+      {
+          "id": "1647800",
+          "type": "background",
+          "palette": "dark",
+          "accent": "garnet",
+          "name": "Jimmy Kimmel Live - Theme - Background",
+          "title": "<strong>WEEKNIGHTS</strong> 11:35|10:35c",
+          "images": [
+              {
+                  "id": "1695873",
+                  "value": "https://cdn1.edgedatg.com/aws/v2/abc/Layout/theme/1647800/05e9122d9cceab6b044a50ca50c84ecf/720x1280-Q80_05e9122d9cceab6b044a50ca50c84ecf.jpg",
+                  "type": "background",
+                  "width": 720,
+                  "height": 1280,
+                  "format": "jpg"
+              }
+          ]
+      },
+      {
+          "id": "2244151",
+          "type": "show",
+          "palette": "dark",
+          "accent": "aluminum",
+          "name": "Theme - Content Detail - Jimmy Kimmel Live! - Wellspring",
+          "title": "<strong>WEEKNIGHTS</strong> 11:35|10:35c",
+          "link": {
+              "type": "show",
+              "external": false,
+              "disclaimer": false,
+              "id": "53194",
+              "value": "SH559060",
+              "urlValue": "/shows/jimmy-kimmel-live"
+          },
+          "images": [
+              {
+                  "id": "2983268",
+                  "value": "https://cdn1.edgedatg.com/aws/v2/abc/JimmyKimmelLive/showimages/3be735d7b2d1bbf63c11c625a24af679/896x1792-Q75_3be735d7b2d1bbf63c11c625a24af679.jpg",
+                  "type": "show-background",
+                  "width": 896,
+                  "height": 1792,
+                  "format": "jpg"
+              },
+              {
+                  "id": "2983267",
+                  "value": "https://cdn1.edgedatg.com/aws/v2/abc/JimmyKimmelLive/showimages/9791a2a01d114ac0bddb89ac4c1c8d2f/500x167-Q80_9791a2a01d114ac0bddb89ac4c1c8d2f.png",
+                  "type": "showLogoCentered",
+                  "width": 500,
+                  "height": 167,
+                  "format": "png"
+              },
+              {
+                  "id": "2983267",
+                  "value": "https://cdn1.edgedatg.com/aws/v2/abc/JimmyKimmelLive/showimages/9791a2a01d114ac0bddb89ac4c1c8d2f/240x80-Q80_9791a2a01d114ac0bddb89ac4c1c8d2f.png",
+                  "type": "showLogoPinned",
+                  "width": 240,
+                  "height": 80,
+                  "format": "png"
+              },
+              {
+                  "id": "2982329",
+                  "value": "https://cdn1.edgedatg.com/aws/v2/abc/JimmyKimmelLive/showimages/a668ddd64700a50bde8f50f05486a6db/360x480-Q75_a668ddd64700a50bde8f50f05486a6db.jpg",
+                  "type": "auth",
+                  "width": 360,
+                  "height": 480,
+                  "format": "jpg"
+              }
+          ],
+          "colors": [
+              {
+                  "type": "primary",
+                  "red": 6,
+                  "green": 19,
+                  "blue": 53,
+                  "alpha": 1
+              },
+              {
+                  "type": "secondary",
+                  "red": 83,
+                  "green": 120,
+                  "blue": 157,
+                  "alpha": 1
+              }
+          ],
+          "resource": "https://qa.gatekeeper.us-abc.symphony.edgedatg.com/api/ws/pluto/v1/layout?brand=001&device=003_2&authlevel=0&type=show&show=SH559060"
+      }
+  ]
+}
